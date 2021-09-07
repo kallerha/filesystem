@@ -36,6 +36,11 @@ interface iFilesystem
     public function touchFile(string $filename, string $extension, string $content = ''): iFile;
 
     /**
+     * @return bool
+     */
+    public function fileExists(string $filename, string $extension): bool;
+
+    /**
      * @param string $filename
      * @param string $extension
      * @return iFile|null

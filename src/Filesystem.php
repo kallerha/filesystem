@@ -119,6 +119,14 @@ class Filesystem implements iFilesystem
 
     /**
      * @inheritDoc
+     */
+    public function fileExists(string $filename, string $extension): bool
+    {
+        return is_file(filename: $this->directoryPath . DIRECTORY_SEPARATOR . $filename . '.' . $extension);
+    }
+
+    /**
+     * @inheritDoc
      * @throws InvalidFilepathException
      */
     public function openFile(string $filename, string $extension): ?iFile
