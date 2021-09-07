@@ -30,6 +30,11 @@ interface iFile extends Iterator, Stringable
     public function getExtension(): string;
 
     /**
+     * @return string
+     */
+    public function getAsCompilableContent(): string;
+
+    /**
      * @return array
      */
     public function getLines(): ?array;

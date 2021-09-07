@@ -70,6 +70,14 @@ class File implements iFile
     }
 
     /**
+     * @return string
+     */
+    public function getAsCompilableContent(): string
+    {
+        return (include($this->toFullPath()));
+    }
+
+    /**
      * @inheritDoc
      */
     public function getLines(): ?array
