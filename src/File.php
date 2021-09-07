@@ -70,11 +70,17 @@ class File implements iFile
     }
 
     /**
-     * @return string
+     * @inheritDoc
      */
-    public function getAsCompilableContent(): string
+    public function getAsCompilableContent(array $data = []): string
     {
-        return (include($this->toFullPath()));
+        extract($data);
+        ob_start();
+
+        include $this->toFullPath();
+        echo PHP_EOL;
+
+        return ob_get_clean();
     }
 
     /**

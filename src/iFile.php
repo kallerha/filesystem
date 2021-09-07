@@ -30,9 +30,10 @@ interface iFile extends Iterator, Stringable
     public function getExtension(): string;
 
     /**
+     * @param array $data
      * @return string
      */
-    public function getAsCompilableContent(): string;
+    public function getAsCompilableContent(array $data = []): string;
 
     /**
      * @return array
