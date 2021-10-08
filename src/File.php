@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace FluencePrototype\Filesystem;
 
+use JetBrains\PhpStorm\Pure;
 use SplFileObject;
 
 /**
@@ -86,7 +87,7 @@ class File implements iFile
     /**
      * @inheritDoc
      */
-    public function getLines(): ?array
+    public function getLines(): null|array
     {
         if ($this->fileObject) {
             if ($lines = file($this->toFullPath())) {
@@ -229,7 +230,7 @@ class File implements iFile
     /**
      * @inheritDoc
      */
-    public function __toString()
+    #[Pure] public function __toString()
     {
         return $this->toFullPath();
     }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace FluencePrototype\Filesystem;
 
 use Composer\Autoload\ClassLoader;
+use FilesystemIterator;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use ReflectionClass;
@@ -29,7 +30,7 @@ class Filesystem implements iFilesystem
     {
         if (!$directoryPath) {
             $reflectionClass = new ReflectionClass(objectOrClass: ClassLoader::class);
-            $directoryPath = dirname(path: dirname(path: dirname(path: $reflectionClass->getFileName())));
+            $directoryPath = dirname($reflectionClass->getFileName(), levels: 3);
         }
 
         $directoryPathSanitized = filter_var(value: $directoryPath, filter: FILTER_SANITIZE_STRING);
@@ -92,7 +93,7 @@ class Filesystem implements iFilesystem
     public function listFilesRecursively(): array
     {
         $files = [];
-        $recursiveDirectoryIterator = new RecursiveDirectoryIterator(directory: $this->directoryPath, flags: RecursiveDirectoryIterator::SKIP_DOTS);
+        $recursiveDirectoryIterator = new RecursiveDirectoryIterator(directory: $this->directoryPath, flags: FilesystemIterator::SKIP_DOTS);
         $recursiveIteratorIterator = new RecursiveIteratorIterator(iterator: $recursiveDirectoryIterator);
 
         /** @var SplFileInfo $file */
@@ -129,7 +130,7 @@ class Filesystem implements iFilesystem
      * @inheritDoc
      * @throws InvalidFilepathException
      */
-    public function openFile(string $filename, string $extension): ?iFile
+    public function openFile(string $filename, string $extension): null|iFile
     {
         $file = new File(directoryPath: $this->directoryPath, filename: $filename, extension: $extension);
 

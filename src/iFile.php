@@ -36,9 +36,9 @@ interface iFile extends Iterator, Stringable
     public function getAsCompilableContent(array $data = []): string;
 
     /**
-     * @return array
+     * @return array|null
      */
-    public function getLines(): ?array;
+    public function getLines(): null|array;
 
     /**
      * @return string
