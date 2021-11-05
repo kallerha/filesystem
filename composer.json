@@ -20,5 +20,5 @@
       "FluencePrototype\\Filesystem\\": "src/"
     }
   },
-  "minimum-stability": "stable"
+  "minimum-stability": "dev"
 }
