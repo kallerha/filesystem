@@ -29,9 +29,9 @@ class File implements iFile
      */
     public function __construct(string $directoryPath, string $filename, string $extension)
     {
-        $directoryPathSanitized = filter_var(value: $directoryPath, filter: FILTER_SANITIZE_STRING);
-        $filenameSanitized = filter_var(value: $filename, filter: FILTER_SANITIZE_STRING);
-        $extensionSanitized = filter_var(value: $extension, filter: FILTER_SANITIZE_STRING);
+        $directoryPathSanitized = filter_var(value: $directoryPath);
+        $filenameSanitized = filter_var(value: $filename);
+        $extensionSanitized = filter_var(value: $extension);
 
         if (!($directoryPathSanitized !== '' && $extensionSanitized !== '')) {
             throw new InvalidFilePathException();

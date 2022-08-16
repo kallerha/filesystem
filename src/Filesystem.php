@@ -33,7 +33,7 @@ class Filesystem implements iFilesystem
             $directoryPath = dirname($reflectionClass->getFileName(), levels: 3);
         }
 
-        $directoryPathSanitized = filter_var(value: $directoryPath, filter: FILTER_SANITIZE_STRING);
+        $directoryPathSanitized = filter_var(value: $directoryPath);
         $directoryPathSlashesReplaced = str_replace(search: ['\\', '/'], replace: DIRECTORY_SEPARATOR, subject: $directoryPathSanitized);
         $pathInfo = pathinfo(path: $directoryPathSlashesReplaced, flags: PATHINFO_DIRNAME) . DIRECTORY_SEPARATOR . pathinfo(path: $directoryPathSlashesReplaced, flags: PATHINFO_BASENAME);
 
