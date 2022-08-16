@@ -17,7 +17,7 @@ class File implements iFile
     private string $directoryPath;
     private string $filename;
     private string $extension;
-    private $handle;
+    private mixed $handle;
     private SplFileObject $fileObject;
 
     /**
@@ -109,9 +109,9 @@ class File implements iFile
     }
 
     /**
-     * @return false|resource
+     * @return mixed
      */
-    private function getHandle()
+    private function getHandle(): mixed
     {
         if (!$this->handle) {
             $this->handle = fopen(filename: $this->toFullPath(), mode: 'a');
@@ -190,7 +190,7 @@ class File implements iFile
     /**
      * @inheritDoc
      */
-    public function current()
+    public function current(): string|array|bool
     {
         return $this->fileObject->current();
     }
@@ -198,7 +198,7 @@ class File implements iFile
     /**
      * @inheritDoc
      */
-    public function next()
+    public function next(): void
     {
         $this->fileObject->next();
     }
@@ -222,7 +222,7 @@ class File implements iFile
     /**
      * @inheritDoc
      */
-    public function rewind()
+    public function rewind(): void
     {
         $this->fileObject->rewind();
     }
@@ -230,7 +230,7 @@ class File implements iFile
     /**
      * @inheritDoc
      */
-    #[Pure] public function __toString()
+    #[Pure] public function __toString(): string
     {
         return $this->toFullPath();
     }
