@@ -17,7 +17,7 @@ class File implements iFile
     private string $directoryPath;
     private string $filename;
     private string $extension;
-    private mixed $handle;
+    private mixed $handle = null;
     private SplFileObject $fileObject;
 
     /**
